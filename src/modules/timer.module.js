@@ -3,24 +3,17 @@ import {Module} from '../core/module';
 
 export class TimerModule extends Module {
 
-  // static TYPE = 'TimerModule';
-  // static TEXT = 'Установить таймер';
+  static TYPE = 'TimerModule';
+  static TEXT = 'Установить таймер';
 
-  // constructor() {
-  //   super(TimerModule.type, TimerModule.text);
-  // }
+  constructor() {
+    super(TimerModule.type, TimerModule.text);
+  }
 
-  static Text = {
+  static Texts = {
     Start: 'Введите время в секундах:',
     End: 'Время вышло!',
     Error: 'Введите корректное значение времени в секундах!'
-  }
-
-  constructor(type, text) {
-    super(type, text);
-
-    this.type = 'TimerModule';
-    this.text = 'Установить таймер';
   }
 
   trigger() {
@@ -51,7 +44,7 @@ export class TimerModule extends Module {
       // this.time = Number(this.time.trim());
 
       if (this.time <= 0) {
-        alert(TimerModule.Text.Error);
+        alert(TimerModule.Texts.Error);
       } else if (this.time < 3600) {
         this.render();
       } else {
@@ -59,7 +52,7 @@ export class TimerModule extends Module {
         this.render();
       }
     } else if (isNaN(this.time)) {
-      alert(TimerModule.Text.Error);
+      alert(TimerModule.Texts.Error);
     }
   }
 
@@ -68,7 +61,7 @@ export class TimerModule extends Module {
     popup.className = 'timer-popup';
     popup.innerHTML = `
       <button class="timer-btn--close">✖</button>
-      <p class="timer-text">${TimerModule.Text.Start}</p>
+      <p class="timer-text">${TimerModule.Texts.Start}</p>
       <input type="number" class="timer-input" min="0" max="3599" placeholder="10" required>
       <button type="button" class="timer-btn timer-btn--start"></button>`;
 
@@ -136,7 +129,7 @@ export class TimerModule extends Module {
   }
 
   stop() {
-    alert(TimerModule.Text.End);
+    alert(TimerModule.Texts.End);
     this.clear();
   }
 
@@ -154,6 +147,3 @@ export class TimerModule extends Module {
     document.body.querySelector('.timer').remove();
   }
 }
-
-const timer = new TimerModule('timer', 'timer');
-timer.trigger()
