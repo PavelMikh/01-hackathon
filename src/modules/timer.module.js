@@ -4,11 +4,17 @@ import {Module} from '../core/module';
 export class TimerModule extends Module {
 
   // static TYPE = 'TimerModule';
-  // static TEXT = '';
+  // static TEXT = 'Установить таймер';
 
   // constructor() {
   //   super(TimerModule.type, TimerModule.text);
   // }
+
+  static Text = {
+    Start: 'Введите время в секундах:',
+    End: 'Время вышло!',
+    Error: 'Введите корректное значение времени в секундах!'
+  }
 
   constructor(type, text) {
     super(type, text);
@@ -18,13 +24,13 @@ export class TimerModule extends Module {
   }
 
   trigger() {
-    this.time = prompt('Введите время в секундах:');
+    this.time = prompt(TimerModule.Text.Start);
 
     if (this.time !== null && !isNaN(this.time)) {
       this.time = Number(this.time.trim());
 
       if (this.time <= 0) {
-        alert('Введите корректное значение времени в секундах!');
+        alert(TimerModule.Text.Error);
         this.trigger();
       } else if (this.time < 3600) {
         this.render();
@@ -33,7 +39,7 @@ export class TimerModule extends Module {
         this.render();
       }
     } else if (isNaN(this.time)) {
-      alert('Введите корректное значение времени в секундах!');
+      alert(TimerModule.Text.Error);
       this.trigger();
     }
   }
@@ -77,7 +83,7 @@ export class TimerModule extends Module {
   }
 
   stop() {
-    alert('Время вышло!');
+    alert(TimerModule.Text.End);
     this.clear();
   }
 
