@@ -70,7 +70,7 @@ export class TimerModule extends Module {
       <button class="timer-btn--close">✖</button>
       <p class="timer-text">${TimerModule.Text.Start}</p>
       <input type="number" class="timer-input" min="0" max="3599" placeholder="10" required>
-      <button type="button" class="timer-btn--start"></button>`;
+      <button type="button" class="timer-btn timer-btn--start"></button>`;
 
     document.body.appendChild(popup);
 
@@ -104,7 +104,7 @@ export class TimerModule extends Module {
       <span class="timer-part timer-minutes">00</span>
 			<span class="timer-part">:</span>
 			<span class="timer-part timer-seconds">00</span>
-			<button type="button" class="timer-btn"></button>`;
+			<button type="button" class="timer-btn timer-btn--cancel"></button>`;
 
     document.body.appendChild(timer);
 

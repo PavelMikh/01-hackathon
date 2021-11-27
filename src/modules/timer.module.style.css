@@ -1,6 +1,6 @@
 :root {
   --white: white;
-  --btn-color: #ff0256;
+  --btn-cancel: #ff0256;
   --btn-start: #00b84c;
   --btn-close: #c0c5cb;
 }
@@ -28,8 +28,7 @@
   vertical-align: middle;
 }
 
-.timer-btn,
-.timer-btn--start {
+.timer-btn {
   position: relative;
   width: 50px;
   height: 50px;
@@ -38,12 +37,12 @@
   border: none;
   border-radius: 50%;
   vertical-align: middle;
-  background: var(--btn-color);
+  background: var(--btn-cancel);
   cursor: pointer;
 }
 
-.timer-btn:before,
-.timer-btn:after {
+.timer-btn--cancel:before,
+.timer-btn--cancel:after {
   content: "";
   position: absolute;
   top: 11px;
@@ -53,11 +52,11 @@
   background-color: var(--white);
 }
 
-.timer-btn:before {
+.timer-btn--cancel:before {
   transform: rotate(45deg);
 }
 
-.timer-btn:after {
+.timer-btn--cancel:after {
   transform: rotate(-45deg);
 }
 
