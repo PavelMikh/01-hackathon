@@ -18,21 +18,21 @@ export class TimerModule extends Module {
   }
 
   trigger() {
-    this.inputTime = prompt('Введите время в секундах:');
+    this.time = prompt('Введите время в секундах:');
 
-    if (this.inputTime !== null && !isNaN(this.inputTime)) {
-      this.inputTime = Number(this.inputTime.trim());
+    if (this.time !== null && !isNaN(this.time)) {
+      this.time = Number(this.time.trim());
 
-      if (this.inputTime <= 0) {
+      if (this.time <= 0) {
         alert('Введите корректное значение времени в секундах!');
         this.trigger();
-      } else if (this.inputTime < 3600) {
+      } else if (this.time < 3600) {
         this.render();
       } else {
-        this.inputTime = 3599;
+        this.time = 3599;
         this.render();
       }
-    } else if (isNaN(this.inputTime)) {
+    } else if (isNaN(this.time)) {
       alert('Введите корректное значение времени в секундах!');
       this.trigger();
     }
@@ -41,44 +41,57 @@ export class TimerModule extends Module {
   render() {
     const timer = document.createElement('div');
     timer.className = 'timer';
-    timer.innerHTML = `<span class="timer-part timer-minutes">00</span>
+    timer.innerHTML = `
+      <span class="timer-part timer-minutes">00</span>
 			<span class="timer-part">:</span>
-			<span class="timer-part timer-seconds">00</span>`;
+			<span class="timer-part timer-seconds">00</span>
+			<button type="button" class="timer-btn"></button>`;
 
     document.body.appendChild(timer);
 
-    this.updateTime();
     this.start();
+    this.update();
+    this.cancel();
   }
 
   start() {
     this.interval = setInterval(() => {
-      this.inputTime--;
-      this.updateTime();
+      this.time--;
+      this.update();
 
-      if (this.inputTime === 0) {
+      if (this.time === 0) {
         this.stop();
       }
     }, 1000);
   }
 
-  updateTime() {
+  update() {
     this.minutes = document.body.querySelector('.timer-minutes');
     this.seconds = document.body.querySelector('.timer-seconds');
 
-    const minutes = Math.floor(this.inputTime / 60);
-    const seconds = this.inputTime % 60;
+    const minutes = Math.floor(this.time / 60);
+    const seconds = this.time % 60;
 
     this.minutes.textContent = minutes.toString().padStart(2, '0');
     this.seconds.textContent = seconds.toString().padStart(2, '0');
   }
 
   stop() {
+    alert('Время вышло!');
+    this.clear();
+  }
+
+  cancel() {
+    this.cancelBtn = document.body.querySelector('.timer-btn');
+    this.cancelBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      this.clear();
+    });
+  }
+
+  clear() {
     clearInterval(this.interval);
     this.interval = null;
-
-    alert('Время вышло!');
-
     document.body.querySelector('.timer').remove();
   }
 }
