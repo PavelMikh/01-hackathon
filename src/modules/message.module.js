@@ -5,7 +5,7 @@ export class MessageModule extends Module {
 
     static #messagesArray = ['Have a nice weekend!', 'Happy Thanksgiving Day!', 'All the leaves are brown)', 'Id be safe and warm'];
     static TYPE = 'MessageModule';
-    static TEXT = 'show message';
+    static TEXT = 'Показать сообщение';
 
     constructor() {
         super(MessageModule.TYPE, MessageModule.TEXT);
