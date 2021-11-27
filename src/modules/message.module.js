@@ -19,8 +19,8 @@ export class MessageModule extends Module {
                 if (messageBlock) {
                     messageBlock.remove();
                 }
-            }, 2000);
-            clearTimeout(messageTimeout);
+                clearTimeout(messageTimeout);
+            }, 1000);
         } catch (e) {
             console.log(e.name + ': ' + e.message);
         }
