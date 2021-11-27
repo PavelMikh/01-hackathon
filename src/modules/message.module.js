@@ -4,10 +4,12 @@ import { random } from '../utils';
 export class MessageModule extends Module {
 
     static #messagesArray = ['Have a nice weekend!', 'Happy Thanksgiving Day!', 'All the leaves are brown)', 'Id be safe and warm'];
+    static TYPE = 'MessageModule';
+    static TEXT = 'show message';
 
-    constructor(type, text) {
-        super(type, text);
-    };
+    constructor() {
+        super(MessageModule.TYPE, MessageModule.TEXT);
+    }
 
     trigger() {
         try {
