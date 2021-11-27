@@ -11,9 +11,8 @@ export class MessageModule extends Module {
 
     trigger() {
         try {
-            const body = document.querySelector('body');
             const messageBlock = this.createMessageElement();
-            body.append(messageBlock);
+            document.body.append(messageBlock);
             const messageTimeout = setTimeout(() => {
                 if (messageBlock) {
                     messageBlock.remove();
