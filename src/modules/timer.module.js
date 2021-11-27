@@ -24,14 +24,34 @@ export class TimerModule extends Module {
   }
 
   trigger() {
-    this.time = prompt(TimerModule.Text.Start);
+    this.popup();
 
+    const popup = document.body.querySelector('.timer-popup');
+    const input = popup.querySelector('.timer-input');
+    const submit = popup.querySelector('.timer-btn--start');
+
+    input.focus();
+
+    input.addEventListener('change', (event) => {
+      event.preventDefault();
+      const {target} = event;
+      this.time = target.value;
+
+      console.log(this.time)
+    })
+
+    submit.addEventListener('click', (event) => {
+      event.preventDefault();
+      this.check();
+    })
+  }
+
+  check() {
     if (this.time !== null && !isNaN(this.time)) {
-      this.time = Number(this.time.trim());
+      // this.time = Number(this.time.trim());
 
       if (this.time <= 0) {
         alert(TimerModule.Text.Error);
-        this.trigger();
       } else if (this.time < 3600) {
         this.render();
       } else {
@@ -40,11 +60,44 @@ export class TimerModule extends Module {
       }
     } else if (isNaN(this.time)) {
       alert(TimerModule.Text.Error);
-      this.trigger();
     }
   }
 
+  popup() {
+    const popup = document.createElement('div');
+    popup.className = 'timer-popup';
+    popup.innerHTML = `
+      <button class="timer-btn--close">✖</button>
+      <p class="timer-text">${TimerModule.Text.Start}</p>
+      <input type="number" class="timer-input" min="0" max="3599" placeholder="10" required>
+      <button type="button" class="timer-btn--start"></button>`;
+
+    document.body.appendChild(popup);
+
+    this.close();
+  }
+
+  close() {
+    const popup = document.body.querySelector('.timer-popup');
+    const close = popup.querySelector('.timer-btn--close');
+
+    close.addEventListener('click', (event) => {
+      event.preventDefault();
+      popup.remove();
+    })
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        popup.remove();
+      }
+    })
+  }
+
   render() {
+    if (document.body.querySelector('.timer-popup')) {
+      document.body.querySelector('.timer-popup').remove();
+    }
+
     const timer = document.createElement('div');
     timer.className = 'timer';
     timer.innerHTML = `
