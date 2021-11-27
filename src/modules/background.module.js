@@ -1,8 +1,10 @@
 import {Module} from '../core/module'
 
 export class BackgroundModule extends Module {
-  constructor(type, text) {
-    super(type, text)
+  static TYPE = 'BackgroundModule'
+  static TEXT = 'Случайный фон'
+  constructor() {
+    super(BackgroundModule.type, BackgroundModule.text)
     this.backgroundColors = ['#0d43b8', '#007d17',
                              '#0b6880', '#5b00c4',
                              '#9d00c4', '#990000',
