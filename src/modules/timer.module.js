@@ -15,10 +15,11 @@ export class TimerModule extends Module {
     this.type = 'TimerModule';
     this.text = 'Установить таймер';
 
-    this.inputTime = 120;
   }
 
   trigger() {
+    this.inputTime = Number(prompt('Ведите время в секундах:'));
+
     const timer = document.createElement('div');
     timer.className = 'timer';
     timer.innerHTML = `<span class="timer-part timer-minutes">00</span>
