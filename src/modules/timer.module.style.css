@@ -1,0 +1,23 @@
+:root {
+  --white: white;
+  --btn-color: #ff0256;
+}
+
+.timer {
+  display: inline-block;
+  margin: 1rem;
+  padding: 24px 32px;
+  font-family: sans-serif;
+  background: var(--white);
+  border-radius: 30px;
+  box-shadow:
+    rgba(17, 17, 26, 0.1) 0 8px 24px,
+    rgba(17, 17, 26, 0.1) 0 16px 56px,
+    rgba(17, 17, 26, 0.1) 0 24px 80px;
+}
+
+.timer-part {
+  font-size: 36px;
+  font-weight: bold;
+  vertical-align: middle;
+}

@@ -1,3 +1,4 @@
+import './timer.module.style.css';
 import {Module} from '../core/module';
 
 export class TimerModule extends Module {
@@ -18,7 +19,7 @@ export class TimerModule extends Module {
   }
 
   trigger() {
-    this.inputTime = Number(prompt('Ведите время в секундах:'));
+    this.inputTime = Number(prompt('Введите время в секундах:'));
 
     const timer = document.createElement('div');
     timer.className = 'timer';
