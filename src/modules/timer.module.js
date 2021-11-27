@@ -15,12 +15,30 @@ export class TimerModule extends Module {
 
     this.type = 'TimerModule';
     this.text = 'Установить таймер';
-
   }
 
   trigger() {
-    this.inputTime = Number(prompt('Введите время в секундах:'));
+    this.inputTime = prompt('Введите время в секундах:');
 
+    if (this.inputTime !== null && !isNaN(this.inputTime)) {
+      this.inputTime = Number(this.inputTime.trim());
+
+      if (this.inputTime <= 0) {
+        alert('Введите корректное значение времени в секундах!');
+        this.trigger();
+      } else if (this.inputTime < 3600) {
+        this.render();
+      } else {
+        this.inputTime = 3599;
+        this.render();
+      }
+    } else if (isNaN(this.inputTime)) {
+      alert('Введите корректное значение времени в секундах!');
+      this.trigger();
+    }
+  }
+
+  render() {
     const timer = document.createElement('div');
     timer.className = 'timer';
     timer.innerHTML = `<span class="timer-part timer-minutes">00</span>
@@ -57,8 +75,11 @@ export class TimerModule extends Module {
 
   stop() {
     clearInterval(this.interval);
-    document.body.querySelector('.timer').remove();
     this.interval = null;
+
+    alert('Время вышло!');
+
+    document.body.querySelector('.timer').remove();
   }
 }
 
