@@ -7,7 +7,7 @@ export class TimerModule extends Module {
   static TEXT = 'Установить таймер';
 
   constructor() {
-    super(TimerModule.type, TimerModule.text);
+    super(TimerModule.TYPE, TimerModule.TEXT);
   }
 
   static Texts = {
