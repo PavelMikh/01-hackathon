@@ -43,13 +43,13 @@ export class ShapeModule extends Module {
         newShape.style.width = `${this.#widthShape}rem`; 
         newShape.style.height = `${this.#heightShape}rem`;
     
-        const color = this.getRendomColor();
-        newShape.style.backgroundColor = color;
+        newShape.style.backgroundColor = this.getRendomColor();
+
+        return newShape;
     }
 
     displayNewShape = () => {
-
-       return document.body.append(this.createNewShape());
+        document.body.append(this.createNewShape());
     }
 
     trigger() {
