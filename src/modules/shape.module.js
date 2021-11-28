@@ -3,9 +3,11 @@ import * as Utils from '../utils';
 
 export class ShapeModule extends Module {
     #colors
+    static TYPE = 'ShapeModule';
+    static TEXT = 'Создать фигуру';
 
-    constructor(type, text) {
-    super(type, text)
+    constructor() {
+    super(ShapeModule.TYPE, ShapeModule.TEXT)
     this.#colors = [   '#E6D72A', '#5BC8AC', '#98DBC6', 
                     '#FEFE22', '#fi62ff', '#ffcce7', 
                     '#fe3a9e', '#FBA0E3','#FF00FF', 
@@ -29,11 +31,11 @@ export class ShapeModule extends Module {
         newShape.style.marginTop = `${top}%`;
         newShape.style.marginLeft = `${left}%`;
     
-        const a = Utils.random(20, 60);
-        const b = a * 1.5;
+        const widthShape = Utils.random(20, 60);
+        const heightShape = widthShape * 1.5;
         
-        newShape.style.width = `${a}rem`; 
-        newShape.style.height = `${b}rem`;
+        newShape.style.width = `${widthShape}rem`; 
+        newShape.style.height = `${heightShape}rem`;
     
         const color = this.getRendomColor();
         newShape.style.backgroundColor = color;
