@@ -5,7 +5,7 @@ export class BackgroundModule extends Module {
   static TYPE = 'BackgroundModule'
   static TEXT = 'Случайный фон'
   constructor() {
-    super(BackgroundModule.type, BackgroundModule.text)
+    super(BackgroundModule.TYPE, BackgroundModule.TEXT)
     this.backgroundColors = ['#0d43b8', '#1c9e34',
                              '#0b6880', '#5b00c4',
                              '#8700a8', '#990000',
@@ -21,6 +21,6 @@ export class BackgroundModule extends Module {
 
   trigger() {
     document.body.style.background = this.getRandomColor()
-    return document.body.style.transition = '1s'
+    document.body.style.transition = '1s'
   }
 }
