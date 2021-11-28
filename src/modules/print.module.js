@@ -5,17 +5,21 @@ export class PrintModule extends Module {
   static TEXT = 'Печать страницы'
   constructor() {
     super(PrintModule.TYPE, PrintModule.TEXT)
-    this.ourMessage = document.createElement('div')
-    this.ourMessage.textContent = '{ Данная функция нужна для людей пожилого возраста }'
-    this.ourMessage.style.fontSize = 'x-large'
-    this.ourMessage.style.width = '100%'
-    this.ourMessage.style.textAlign = 'center'
-    this.ourMessage.style.marginTop = '3rem'
   }
 
   createInfoMessage() {
+    ourMessage = document.createElement('div')
+    ourMessage.textContent = '{ Данная функция нужна для людей пожилого возраста }'
+    ourMessage.style.fontSize = 'x-large'
+    ourMessage.style.width = '100%'
+    ourMessage.style.textAlign = 'center'
+    ourMessage.style.marginTop = '3rem'
+    return ourMessage
+  }
+
+  displayInfoMessage() {
     if (!document.body.ourMessage) {
-      document.body.append(this.ourMessage)
+      document.body.append(this.createInfoMessage())
     }
   }
 
