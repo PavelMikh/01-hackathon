@@ -1,5 +1,6 @@
-import { Module } from '../core/module';
-import { random } from '../utils';
+import { Module } from '../../core/module';
+import { random } from '../../utils';
+import './message.css'
 
 export class MessageModule extends Module {
 
@@ -12,18 +13,14 @@ export class MessageModule extends Module {
     }
 
     trigger() {
-        try {
-            const messageBlock = this.createMessageElement();
-            document.body.append(messageBlock);
-            const messageTimeout = setTimeout(() => {
-                if (messageBlock) {
-                    messageBlock.remove();
-                }
-                clearTimeout(messageTimeout);
-            }, 1000);
-        } catch (e) {
-            console.log(e.name + ': ' + e.message);
-        }
+
+        const messageBlock = this.createMessageElement();
+        document.body.append(messageBlock);
+        const messageTimeout = setTimeout(() => {
+            messageBlock.remove();
+            clearTimeout(messageTimeout);
+        }, 3000);
+
     };
     createMessageElement() {
         const randomIndex = random(0, MessageModule.#messagesArray.length - 1);
