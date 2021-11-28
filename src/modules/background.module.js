@@ -1,18 +1,21 @@
 import {Module} from '../core/module'
+import {random} from '../utils'
 
 export class BackgroundModule extends Module {
   static TYPE = 'BackgroundModule'
   static TEXT = 'Случайный фон'
   constructor() {
     super(BackgroundModule.type, BackgroundModule.text)
-    this.backgroundColors = ['#0d43b8', '#007d17',
+    this.backgroundColors = ['#0d43b8', '#1c9e34',
                              '#0b6880', '#5b00c4',
-                             '#9d00c4', '#990000',
-                             '#00ab6c', '#1a1a1a']
+                             '#8700a8', '#990000',
+                             '#00ab6c', '#1a1a1a',
+                             '#cd2956', '#3498db',
+                             '#e74c3c', '#ff9100']
   }
 
   getRandomColor() {
-    const index = Math.floor(Math.random() * this.backgroundColors.length)
+    const index = random(0, this.backgroundColors.length - 1)
     return this.backgroundColors[index]
   }
 
