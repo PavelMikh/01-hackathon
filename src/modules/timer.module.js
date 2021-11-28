@@ -2,18 +2,19 @@ import './timer.module.style.css';
 import {Module} from '../core/module';
 
 export class TimerModule extends Module {
+  #texts
 
   static TYPE = 'TimerModule';
   static TEXT = 'Установить таймер';
 
   constructor() {
     super(TimerModule.TYPE, TimerModule.TEXT);
-  }
 
-  static Texts = {
-    Start: 'Введите время в секундах:',
-    End: 'Время вышло!',
-    Error: 'Введите корректное значение времени в секундах!'
+    this.#texts = {
+      start: 'Введите время в секундах:',
+      end: 'Время вышло!',
+      error: 'Введите корректное значение времени в секундах!'
+    }
   }
 
   trigger() {
@@ -21,7 +22,7 @@ export class TimerModule extends Module {
     popup.className = 'timer-popup';
     popup.innerHTML = `
       <button class="timer-btn--close">✖</button>
-      <p class="timer-text">${TimerModule.Texts.Start}</p>
+      <p class="timer-text">${this.#texts.start}</p>
       <input type="number" class="timer-input" min="1" max="3599" value="10" placeholder="0" required>
       <button type="button" class="timer-btn timer-btn--start"></button>`;
 
@@ -43,10 +44,8 @@ export class TimerModule extends Module {
 
   check() {
     if (this.time !== null && !isNaN(this.time)) {
-      // this.time = Number(this.time.trim());
-
       if (this.time <= 0) {
-        alert(TimerModule.Texts.Error);
+        alert(this.#texts.error);
       } else if (this.time < 3600) {
         this.render();
       } else {
@@ -54,7 +53,7 @@ export class TimerModule extends Module {
         this.render();
       }
     } else if (isNaN(this.time)) {
-      alert(TimerModule.Texts.Error);
+      alert(this.#texts.error);
     }
   }
 
@@ -117,7 +116,7 @@ export class TimerModule extends Module {
   }
 
   stop() {
-    alert(TimerModule.Texts.End);
+    alert(this.#texts.end);
     this.clear();
   }
 
