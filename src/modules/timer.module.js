@@ -17,26 +17,28 @@ export class TimerModule extends Module {
   }
 
   trigger() {
-    this.popup();
+    const popup = document.createElement('div');
+    popup.className = 'timer-popup';
+    popup.innerHTML = `
+      <button class="timer-btn--close">✖</button>
+      <p class="timer-text">${TimerModule.Texts.Start}</p>
+      <input type="number" class="timer-input" min="1" max="3599" value="10" placeholder="0" required>
+      <button type="button" class="timer-btn timer-btn--start"></button>`;
 
-    const popup = document.body.querySelector('.timer-popup');
+    document.body.appendChild(popup);
+
     const input = popup.querySelector('.timer-input');
     const submit = popup.querySelector('.timer-btn--start');
 
     input.focus();
 
-    input.addEventListener('change', (event) => {
-      event.preventDefault();
-      const {target} = event;
-      this.time = target.value;
-
-      console.log(this.time)
-    })
-
     submit.addEventListener('click', (event) => {
       event.preventDefault();
+      this.time = input.value;
       this.check();
     })
+
+    this.close();
   }
 
   check() {
@@ -54,20 +56,6 @@ export class TimerModule extends Module {
     } else if (isNaN(this.time)) {
       alert(TimerModule.Texts.Error);
     }
-  }
-
-  popup() {
-    const popup = document.createElement('div');
-    popup.className = 'timer-popup';
-    popup.innerHTML = `
-      <button class="timer-btn--close">✖</button>
-      <p class="timer-text">${TimerModule.Texts.Start}</p>
-      <input type="number" class="timer-input" min="0" max="3599" placeholder="10" required>
-      <button type="button" class="timer-btn timer-btn--start"></button>`;
-
-    document.body.appendChild(popup);
-
-    this.close();
   }
 
   close() {
